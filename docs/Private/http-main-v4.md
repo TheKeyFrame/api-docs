@@ -159,8 +159,8 @@ This endpoint retrieves a deposit address of the cryptocurrency.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-ticker | String | **Yes** | Currencies ticker. Example: BTC ⚠ Currency ticker should be: not fiat and has "can_deposit" status must be "true". If currency has multiple networks like USDT - you need to use multinetwork ticker you can find it in https://whitebit.com/api/v4/public/assets request. Default network for USDT is Ethereum (ERC20).
-network | String | **No** | Cryptocurrency network. Available for multi network currencies. Example: ERC20 ⚠ Currency network should be taken from https://whitebit.com/api/v4/public/assets response. Default for USDT is Ethereum (ERC20).
+ticker | String | **Yes** | Currencies ticker. Example: BTC ⚠ Currency ticker should not be fiat and it's "can_deposit" status must be "true". You can find this status in https://whitebit.com/api/v4/public/assets respsonse.
+network | String | **Yes, if currency is multinetwork** | Cryptocurrency network. ⚠ If currency has multiple networks like USDT - you need to specify network to be used. You can find ticker networks list in “networks” field from response https://whitebit.com/api/v4/public/assets.
 
 **Request BODY raw:**
 ```json5
@@ -1281,7 +1281,8 @@ Response error codes:
 ```json5
 {
     "code": "WBe11f4fce-2a53-4edc-b195-66b693bd77e3ETH",         // generated WhiteBIT code
-    "message": "Code was successfully created"
+    "message": "Code was successfully created",
+    "external_id": "be08a482-5faf-11ed-9b6a-0242ac120002"
 }
 
 ```
@@ -1424,7 +1425,8 @@ Available statuses:
 {
     "message": "Code was successfully applied",
     "ticker": "ETH",
-    "amount": "0.002"
+    "amount": "0.002",
+    "external_id": "be08a482-5faf-11ed-9b6a-0242ac120002"
 }
 
 ```
@@ -1499,7 +1501,8 @@ Available statuses:
             "code": "WBe11f4fce-2a53-4edc-b195-66b693bd77e3ETH",        // code
             "date": 1598296332,                                         // code creation timestamp
             "status": "Activated",                                      // code status
-            "ticker": "ETH"                                             // code ticker
+            "ticker": "ETH",                                            // code ticker
+            "external_id": "cf7c3ff8-5eb0-11ed-9b6a-0242ac120002"       // code external id
         },
         {...}
     ],
@@ -1601,14 +1604,16 @@ Available statuses:
             "code": "WBe11f4fce-2a53-4edc-b195-66b693bd77e3ETH",          // code
             "date": 1598296734,                                           // code activation timestamp
             "status": "Activated",                                        // current code status
-            "ticker": "ETH"                                               // code ticker
+            "ticker": "ETH",                                              // code ticker
+            "external_id": "cf7c3ff8-5eb0-11ed-9b6a-0242ac120002"         // code external id
         },
         {
             "amount": "-0.002",                                           // code amount change; - is created; + is applied
             "code": "WBe11f4fce-2a53-4edc-b195-66b693bd77e3ETH",          // code
             "date": 1598296332,                                           // code creation timestamp
             "status": "Activated",                                        // current code status
-            "ticker": "ETH"                                               // code ticker
+            "ticker": "ETH",                                              // code ticker
+            "external_id": "52995812-5eb1-11ed-9b6a-0242ac120002"         // code external id
         },
         {...}
     ],
